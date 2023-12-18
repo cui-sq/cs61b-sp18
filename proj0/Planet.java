@@ -1,15 +1,15 @@
 public class Planet{
-	double xxPos; //Its current x position
-	double yyPos; //Its current y position
+	public double xxPos; //Its current x position
+	public double yyPos; //Its current y position
 
-	double xxVel; //Its current velocity in the x direction
-	double yyVel; //Its current velocity in the y direction
+	public double xxVel; //Its current velocity in the x direction
+	public double yyVel; //Its current velocity in the y direction
 
-	double mass;
+	public double mass;
 
-	String imgFileName;
+	public String imgFileName;
 
-	static final double G = 6.67e-11;
+	private static final double G = 6.67e-11;
 
 	/** Constructor*/
 
@@ -96,7 +96,7 @@ public class Planet{
 	   * compare if the Planet is equal to the current Planet. 
 	   * just check the position*/
 
-	   public boolean equals(Planet b){
+	   private boolean equals(Planet b){
 	   	if( (this.xxPos == b.xxPos) && (this.yyPos == b.yyPos))
 	   		return true;
 	   	return false;
@@ -118,7 +118,7 @@ public class Planet{
 	    * takes in no parameters and returns nothing. */
 	    public void draw(){
 	    	StdDraw.picture(this.xxPos, this.yyPos, "images/" + this.imgFileName);
-	    	StdDraw.show();
+	    	//StdDraw.show();
 	    }
 
 
