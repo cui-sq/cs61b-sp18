@@ -71,7 +71,7 @@ public class ArrayDeque<T> {
         start = getPosition(1);
         size -= 1;
         if (size > 8 && (usageRatio() < 0.25)) {
-            resize(items.length / 2 );
+            resize(items.length / 2);
         }
         return x;
     }
@@ -84,7 +84,7 @@ public class ArrayDeque<T> {
         items[getPosition(size - 1)] = null;
         size -= 1;
         if (size > 8 && (usageRatio() < 0.25)) {
-            resize(items.length / 2 );
+            resize(items.length / 2);
         }
         return x;
     }
