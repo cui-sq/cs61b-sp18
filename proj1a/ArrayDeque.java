@@ -1,6 +1,4 @@
-import java.util.Arrays;
-
-public class ArrayDeque<Item> {
+public class ArrayDeque<T> {
     /* Invariants:
      size: the number of items.
      start: The first item is stored in position start.
@@ -14,7 +12,7 @@ public class ArrayDeque<Item> {
         (start + size) % items.length
 
      */
-    private Item[] items;
+    private T[] items;
     /** size: number of items. */
     private int size;
     /** The first item is stored in position start. */
@@ -23,7 +21,7 @@ public class ArrayDeque<Item> {
 
     /** Creates an empty list. */
     public ArrayDeque() {
-        items = (Item[]) new Object[8];
+        items = (T[]) new Object[8];
         size = 0;
         start = 0;
     }
@@ -32,7 +30,7 @@ public class ArrayDeque<Item> {
         return (double) size / items.length;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return size == 0;
     }
 
@@ -44,7 +42,7 @@ public class ArrayDeque<Item> {
         }
         return start - 1;
     }*/
-    public void addFirst(Item x) {
+    public void addFirst(T x) {
         if (!isEmpty()) {
             if (size == items.length) {
                 resize(items.length * 2);
@@ -55,7 +53,7 @@ public class ArrayDeque<Item> {
         size += 1;
     }
 
-    public void addLast(Item x) {
+    public void addLast(T x) {
         if (size == items.length) {
             resize(items.length * 2);
         }
@@ -63,11 +61,11 @@ public class ArrayDeque<Item> {
         size += 1;
     }
 
-    public Item removeFirst() {
+    public T removeFirst() {
         if (isEmpty()) {
             return null;
         }
-        Item x = get(0);
+        T x = get(0);
         items[start] = null;
         start = getPosition(1);
         size -= 1;
@@ -77,11 +75,11 @@ public class ArrayDeque<Item> {
         return x;
     }
 
-    public Item removeLast() {
+    public T removeLast() {
         if (isEmpty()) {
             return null;
         }
-        Item x = get(size - 1);
+        T x = get(size - 1);
         items[size - 1] = null;
         size -= 1;
         if (usageRatio() < 0.25) {
@@ -98,7 +96,7 @@ public class ArrayDeque<Item> {
         return Math.floorMod((start + index), items.length);
     }
 
-    public Item get(int index) {
+    public T get(int index) {
         return items[getPosition(index)];
     }
 
@@ -108,12 +106,18 @@ public class ArrayDeque<Item> {
 
     /** Resizes the underlying array to the target capacity. */
     private void resize(int capacity) {
-        Item[] a = (Item[]) new Object[capacity];
+        T[] a = (T[]) new Object[capacity];
         for(int i = 0; i < size; i++){
             a[i] = get(i);
         }
         start = 0;
         items = a;
+    }
+
+    public void printDeque() {
+        for (int i = 0; i < size; i++) {
+            System.out.print(get(i) + " ");
+        }
     }
 
 }
