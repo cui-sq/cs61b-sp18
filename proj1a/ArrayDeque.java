@@ -2,6 +2,7 @@ public class ArrayDeque<T> {
     /* Invariants:
      size: the number of items.
      start: The first item is stored in position start.
+     items.length should be at least 8.
      The xth item in the list is at
         position (start + x) % items.length in the array.
      addFirst: The next item we want to add will be at position
@@ -69,8 +70,8 @@ public class ArrayDeque<T> {
         items[getPosition(0)] = null;
         start = getPosition(1);
         size -= 1;
-        if (usageRatio() < 0.25) {
-            resize(items.length / 2);
+        if (size > 8 && (usageRatio() < 0.25)) {
+            resize(items.length / 2 );
         }
         return x;
     }
@@ -82,8 +83,8 @@ public class ArrayDeque<T> {
         T x = get(size - 1);
         items[getPosition(size - 1)] = null;
         size -= 1;
-        if (usageRatio() < 0.25) {
-            resize(items.length / 2);
+        if (size > 8 && (usageRatio() < 0.25)) {
+            resize(items.length / 2 );
         }
         return x;
     }
