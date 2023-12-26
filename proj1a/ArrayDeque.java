@@ -26,7 +26,7 @@ public class ArrayDeque<T> {
         start = 0;
     }
 
-    private double usageRatio(){
+    private double usageRatio() {
         return (double) size / items.length;
     }
 
@@ -66,7 +66,7 @@ public class ArrayDeque<T> {
             return null;
         }
         T x = get(0);
-        items[start] = null;
+        items[getPosition(0)] = null;
         start = getPosition(1);
         size -= 1;
         if (usageRatio() < 0.25) {
@@ -80,7 +80,7 @@ public class ArrayDeque<T> {
             return null;
         }
         T x = get(size - 1);
-        items[size - 1] = null;
+        items[getPosition(size - 1)] = null;
         size -= 1;
         if (usageRatio() < 0.25) {
             resize(items.length / 2);
@@ -97,6 +97,9 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
+        if (isEmpty()) {
+            return null;
+        }
         return items[getPosition(index)];
     }
 
@@ -107,7 +110,7 @@ public class ArrayDeque<T> {
     /** Resizes the underlying array to the target capacity. */
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             a[i] = get(i);
         }
         start = 0;
